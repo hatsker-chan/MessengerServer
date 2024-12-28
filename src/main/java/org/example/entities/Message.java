@@ -1,3 +1,3 @@
 package org.example.entities;
 
-public record Message(int id, User sender, String text) {}
+public record Message(User sender, String text, int chat_id) {}

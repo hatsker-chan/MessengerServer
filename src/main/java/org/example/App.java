@@ -5,7 +5,6 @@ import java.net.InetSocketAddress;
 
 public class App {
 
-
     public static void main(String[] args) throws IOException {
         Server server = new Server(new InetSocketAddress(8000));
 

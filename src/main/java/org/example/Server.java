@@ -27,7 +27,7 @@ public class Server {
         setupContext(httpServer);
     }
 
-    private void setupContext(HttpServer httpServer){
+    private void setupContext(HttpServer httpServer) {
         httpServer.createContext(API_PATH_HELLO, (HttpExchange exchange) -> {
             System.out.println("Начало обработки" + API_PATH_HELLO);
             String responseText = "Hello World";
@@ -48,7 +48,7 @@ public class Server {
             System.out.println("Начало обработки" + API_PATH_MESSAGES);
             List<Message> messages = dao.getAllMessagesForChat(1);
 
-            List<MessageDto> dtos = messages.stream().map((Message message)-> {
+            List<MessageDto> dtos = messages.stream().map((Message message) -> {
                 User user = message.sender();
                 return new MessageDto(
                         new UserDto(
@@ -85,12 +85,12 @@ public class Server {
             System.out.println(key + " " + headers.get(key));
         });
 
-        try(InputStreamReader isr = new InputStreamReader(exchange.getRequestBody());
-            BufferedReader reader = new BufferedReader(isr)
-        ){
+        try (InputStreamReader isr = new InputStreamReader(exchange.getRequestBody());
+             BufferedReader reader = new BufferedReader(isr)
+        ) {
             System.out.println("Получен запрос (тело)");
             String s;
-            while((s = reader.readLine()) != null){
+            while ((s = reader.readLine()) != null) {
                 System.out.println(s);
             }
         } catch (IOException e) {
@@ -104,6 +104,6 @@ public class Server {
         return httpServer;
     }
 
-    private static final String API_PATH_HELLO  ="/api/hello";
-    private static final String API_PATH_MESSAGES  ="/api/messages";
+    private static final String API_PATH_HELLO = "/api/hello";
+    private static final String API_PATH_MESSAGES = "/api/messages";
 }
