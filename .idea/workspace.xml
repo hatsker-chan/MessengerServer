@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93098611-813f-4a76-bab6-3326fe91e467" name="Changes" comment="Add /api/messages to return a json with list of MessageDto">
+    <list default="true" id="93098611-813f-4a76-bab6-3326fe91e467" name="Changes" comment="Add insert messages logic">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/server_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/database/MessangerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/database/MessangerDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entities/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pojo/MessageDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pojo/MessageDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entities/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,13 +48,13 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Application.App">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.App" />
       <module name="server" />
@@ -82,8 +83,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Test" />
         <item itemvalue="Application.App" />
+        <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
   </component>
@@ -104,7 +105,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735404352941</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add insert messages logic">
+      <option name="closed" value="true" />
+      <created>1735405300177</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1735405300177</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -120,6 +129,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add /api/messages to return a json with list of MessageDto" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add /api/messages to return a json with list of MessageDto" />
+    <MESSAGE value="Add insert messages logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add insert messages logic" />
   </component>
 </project>

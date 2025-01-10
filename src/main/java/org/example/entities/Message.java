@@ -1,3 +1,5 @@
 package org.example.entities;
 
-public record Message(User sender, String text, int chat_id) {}
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public record Message(@JsonProperty("user") User sender, @JsonProperty("text") String text,@JsonProperty("chat_id") int chatId) {}

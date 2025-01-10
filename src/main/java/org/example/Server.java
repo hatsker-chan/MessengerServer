@@ -46,32 +46,64 @@ public class Server {
 
         httpServer.createContext(API_PATH_MESSAGES, (HttpExchange exchange) -> {
             System.out.println("Начало обработки" + API_PATH_MESSAGES);
-            List<Message> messages = dao.getAllMessagesForChat(1);
+            System.out.println(exchange.getRequestMethod());
+            switch (exchange.getRequestMethod()) {
+                case "GET" -> {
+                    exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+                    exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+                    exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type");
+                    exchange.getResponseHeaders().add("Content-Type", "application/json; charset=utf-8");
+                    List<Message> messages = dao.getAllMessagesForChat(1);
 
-            List<MessageDto> dtos = messages.stream().map((Message message) -> {
-                User user = message.sender();
-                return new MessageDto(
-                        new UserDto(
-                                user.id(),
-                                user.name()
-                        ),
-                        message.text()
-                );
-            }).toList();
+                    List<MessageDto> dtos = messages.stream().map((Message message) -> {
+                        User user = message.sender();
+                        return new MessageDto(
+                                new UserDto(
+                                        user.id(),
+                                        user.name()
+                                ),
+                                message.text()
+                        );
+                    }).toList();
 
-            String responseString = objectMapper.writeValueAsString(new MessagesResponse(dtos));
-            System.out.println("Response:");
-            System.out.println(responseString);
-            byte[] bs = responseString.getBytes(StandardCharsets.UTF_16);
-            exchange.sendResponseHeaders(200, bs.length);
+                    String responseString = objectMapper.writeValueAsString(new MessagesResponse(dtos));
+                    System.out.println("Response:");
+                    System.out.println(responseString);
+                    byte[] bs = responseString.getBytes(StandardCharsets.UTF_8);
+                    exchange.sendResponseHeaders(200, bs.length);
 
-            try (OutputStream os = exchange.getResponseBody()) {
-                os.write(bs);
+                    try (OutputStream os = exchange.getResponseBody()) {
+                        os.write(bs);
+                    } catch (IOException e) {
+                        exchange.sendResponseHeaders(502, 0);
+                        e.printStackTrace();
+                        System.out.println("IO problem");
+                    }
+                }
+                case "POST" -> {
+                    exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+                    exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+                    exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type");
 
-            } catch (IOException e) {
-                exchange.sendResponseHeaders(502, 0);
-                e.printStackTrace();
-                System.out.println("IO problem");
+                    exchange.getResponseHeaders().add("Accept", "application/json");
+                    exchange.sendResponseHeaders(201, 1);
+
+
+                    try (BufferedInputStream bis = new BufferedInputStream(exchange.getRequestBody())) {
+                        Message message = objectMapper.readValue(bis, Message.class);
+                        System.out.println("Post message: " + message.toString());
+                        dao.saveMessage(message);
+                    }
+                }
+                case "OPTIONS" -> {
+                    exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+                    exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+                    exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type");
+                    exchange.getResponseHeaders().add("Content-Type", "application/json; charset=utf-8");
+                    exchange.sendResponseHeaders(204, -1); // 204 No Content
+                }
+
+
             }
             System.out.println("Конец обработки");
         });
@@ -106,4 +138,5 @@ public class Server {
 
     private static final String API_PATH_HELLO = "/api/hello";
     private static final String API_PATH_MESSAGES = "/api/messages";
+
 }

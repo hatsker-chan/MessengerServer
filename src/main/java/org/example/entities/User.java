@@ -1,4 +1,6 @@
 package org.example.entities;
 
-public record User (int id, String name){}
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public record User (@JsonProperty("id") int id, @JsonProperty("nickname") String name){}
 
