@@ -12,14 +12,14 @@ public class MessangerDao implements Dao {
     public void saveMessage(Message message) {
         String insertQuery = "INSERT INTO messages (sender_id, message_text, chat_id) values (?, ?, ?)";
         try (
-                Connection connection = DatabaseConnection.getConnection();
+                Connection connection = DatabaseConnection.getConnection()
         ) {
             PreparedStatement statement = connection.prepareStatement(insertQuery);
             statement.setInt(1, message.sender().id());
             statement.setString(2, message.text());
             statement.setInt(3, 1);
             statement.executeUpdate();
-        } catch (SQLException sqlException){
+        } catch (SQLException sqlException) {
             System.out.println("Невозможно вставить сообщение в таблицу:");
             sqlException.printStackTrace();
         }
@@ -33,7 +33,7 @@ public class MessangerDao implements Dao {
                 "join users on users.user_id = messages.sender_id\n" +
                 "order by messages.message_id";
         try (Connection connection = DatabaseConnection.getConnection();
-             Statement statement = connection.createStatement();
+             Statement statement = connection.createStatement()
         ) {
             ResultSet result = statement.executeQuery(query);
             while (result.next()) {

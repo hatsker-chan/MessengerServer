@@ -27,23 +27,8 @@ public class Server {
         setupContext(httpServer);
     }
 
+
     private void setupContext(HttpServer httpServer) {
-        httpServer.createContext(API_PATH_HELLO, (HttpExchange exchange) -> {
-            System.out.println("Начало обработки" + API_PATH_HELLO);
-            String responseText = "Hello World";
-            exchange.sendResponseHeaders(200, responseText.length());
-            try (OutputStreamWriter osw = new OutputStreamWriter(exchange.getResponseBody());
-                 BufferedWriter writer = new BufferedWriter(osw)
-            ) {
-                writer.write(responseText);
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("IO problem");
-            }
-
-            System.out.println("Успешная обработка" + API_PATH_HELLO);
-        });
-
         httpServer.createContext(API_PATH_MESSAGES, (HttpExchange exchange) -> {
             System.out.println("Начало обработки" + API_PATH_MESSAGES);
             System.out.println(exchange.getRequestMethod());
@@ -102,8 +87,6 @@ public class Server {
                     exchange.getResponseHeaders().add("Content-Type", "application/json; charset=utf-8");
                     exchange.sendResponseHeaders(204, -1); // 204 No Content
                 }
-
-
             }
             System.out.println("Конец обработки");
         });

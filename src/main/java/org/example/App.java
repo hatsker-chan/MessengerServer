@@ -10,6 +10,14 @@ public class App {
 
         server.getHttpServer().setExecutor(null);
         server.getHttpServer().start();
-        System.out.println("Server started");
+
+//        JettyServer server = new JettyServer(8000);
+//        try {
+//            server.start();
+//            System.out.println("Server started");
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+
     }
 }

@@ -11,11 +11,15 @@ public class DatabaseConnection {
 
     static public Connection getConnection() {
         try {
+            Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
             connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
             return connection;
         } catch (SQLException e) {
             System.out.printf("Ошибка при подключении к Postgresql: \nurl: %s; \nuser: %s; \npassword: %s\n;", URL, USER, PASSWORD);
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
