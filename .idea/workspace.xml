@@ -9,12 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93098611-813f-4a76-bab6-3326fe91e467" name="Changes" comment="Add some logic for authentication">
+    <list default="true" id="93098611-813f-4a76-bab6-3326fe91e467" name="Changes" comment="Add packages and made constants">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Server.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/database/MessangerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/database/MessangerDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/api/MessagesServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/api/MessagesServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/api/WebSocketConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/api/WebSocketConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pojo/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pojo/Mapper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +31,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -74,7 +79,7 @@
     "Tomcat Server.Tomcat 9.0.98.executor": "Run",
     "Tomcat Server.Unnamed.executor": "Run",
     "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "refactoring",
     "jdk.selected.JAVA_MODULE": "jbr-17",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/selfEducation/java_back/messanger/back/untitled",
@@ -102,7 +107,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.98">
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.database.Test" />
       <module name="server" />
@@ -235,7 +240,7 @@
       <workItem from="1736528385543" duration="2645000" />
       <workItem from="1736753681416" duration="9686000" />
       <workItem from="1736800307320" duration="2289000" />
-      <workItem from="1737016598398" duration="3344000" />
+      <workItem from="1737016598398" duration="4626000" />
     </task>
     <task id="LOCAL-00001" summary="Add /api/messages to return a json with list of MessageDto">
       <option name="closed" value="true" />
@@ -277,7 +282,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737017384946</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Add packages and made constants">
+      <option name="closed" value="true" />
+      <created>1737020491642</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1737020491642</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -300,6 +313,7 @@
     <MESSAGE value="Add post requests to save messages" />
     <MESSAGE value="Add WebSocketConnection for real-time message updating" />
     <MESSAGE value="Add some logic for authentication" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add some logic for authentication" />
+    <MESSAGE value="Add packages and made constants" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add packages and made constants" />
   </component>
 </project>

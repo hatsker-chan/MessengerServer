@@ -1,7 +1,5 @@
 package org.example.pojo;
 
-import org.example.entities.Message;
-
 import java.util.List;
 
 public class MessagesResponse {

@@ -10,6 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MessangerDao implements Dao {
+    private static final String COLUMN_SENDER_ID = "sender_id";
+    private static final String COLUMN_NICKNAME = "nickname";
+    private static final String COLUMN_EMAIL = "email";
+    private static final String COLUMN_PASSWORD = "password";
+    private static final String COLUMN_MESSAGE_TEXT = "message_text";
+    private static final String COLUMN_CHAT_ID = "chat_id";
+
     @Override
     public void saveMessage(Message message) {
         String insertQuery = "INSERT INTO messages (sender_id, message_text, chat_id) values (?, ?, ?)";
@@ -88,11 +95,4 @@ public class MessangerDao implements Dao {
         }
         return false;
     }
-
-    private static final String COLUMN_SENDER_ID = "sender_id";
-    private static final String COLUMN_NICKNAME = "nickname";
-    private static final String COLUMN_EMAIL = "email";
-    private static final String COLUMN_PASSWORD = "password";
-    private static final String COLUMN_MESSAGE_TEXT = "message_text";
-    private static final String COLUMN_CHAT_ID = "chat_id";
 }

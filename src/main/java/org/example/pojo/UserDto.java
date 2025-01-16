@@ -4,7 +4,7 @@ public class UserDto {
     private int user_id;
     private String nickname;
 
-    public UserDto(int userId, String nickname){
+    public UserDto(int userId, String nickname) {
 
         user_id = userId;
         this.nickname = nickname;

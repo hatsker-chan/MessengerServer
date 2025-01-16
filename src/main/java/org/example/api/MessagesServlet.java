@@ -3,10 +3,9 @@ package org.example.api;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.database.MessangerDao;
 import org.example.entities.Message;
-import org.example.entities.User;
+import org.example.pojo.Mapper;
 import org.example.pojo.MessageDto;
 import org.example.pojo.MessagesResponse;
-import org.example.pojo.UserDto;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,26 +21,14 @@ import java.util.List;
 public class MessagesServlet extends HttpServlet {
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final MessangerDao dao = new MessangerDao();
+    private final Mapper mapper = new Mapper();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json; charset=utf-8");
+        setCORS(resp);
 
-        resp.setHeader("Access-Control-Allow-Origin", "*");
-        resp.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-        resp.setHeader("Access-Control-Allow-Headers", "Content-Type");
-        List<Message> messages = dao.getAllMessagesForChat(1);
-
-        List<MessageDto> dtos = messages.stream().map((Message message) -> {
-            User user = message.sender();
-            return new MessageDto(
-                    new UserDto(
-                            user.id(),
-                            user.name()
-                    ),
-                    message.text()
-            );
-        }).toList();
+        List<MessageDto> dtos = mapper.mapListMessageToDto(dao.getAllMessagesForChat(1));
 
         String responseString = objectMapper.writeValueAsString(new MessagesResponse(dtos));
         System.out.println("Response:");
@@ -54,9 +41,7 @@ public class MessagesServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setHeader("Access-Control-Allow-Origin", "*");
-        resp.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-        resp.setHeader("Access-Control-Allow-Headers", "Content-Type");
+        setCORS(resp);
         resp.setHeader("Accept", "application/json");
         resp.setStatus(201);
 
@@ -64,16 +49,20 @@ public class MessagesServlet extends HttpServlet {
             Message message = objectMapper.readValue(bis, Message.class);
             System.out.println("Post message: " + message.toString());
             dao.saveMessage(message);
+            WebSocketConnection.notifyChat();
         }
-        WebSocketConnection.notifyChat();
     }
 
     @Override
-    protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doOptions(HttpServletRequest req, HttpServletResponse resp) {
+        setCORS(resp);
+        resp.setContentType("application/json; charset=utf-8");
+        resp.setStatus(204);
+    }
+
+    private void setCORS(HttpServletResponse resp) {
         resp.setHeader("Access-Control-Allow-Origin", "*");
         resp.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
         resp.setHeader("Access-Control-Allow-Headers", "Content-Type");
-        resp.setHeader("Content-Type", "application/json; charset=utf-8");
-        resp.setStatus(204); // 204 No Content
     }
 }

@@ -1,9 +1,9 @@
 package org.example.api;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import javax.websocket.*;
+import javax.websocket.OnClose;
+import javax.websocket.OnError;
+import javax.websocket.OnOpen;
+import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.HashSet;
@@ -11,9 +11,19 @@ import java.util.Set;
 
 @ServerEndpoint("/ws/chat")
 public class WebSocketConnection {
-    private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static final Set<Session> clients = new HashSet<>();
 
-    private static Set<Session> clients = new HashSet<>();
+    public static void notifyChat() {
+        for (Session client : clients) {
+            if (client.isOpen()) {
+                try {
+                    client.getBasicRemote().sendText("{\"update\":true}");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
     @OnOpen
     public void onOpen(Session session) {
@@ -28,38 +38,6 @@ public class WebSocketConnection {
     @OnError
     public void onError(Session session, Throwable throwable) {
         throwable.printStackTrace();
-    }
-
-    @OnMessage
-    public void onMessage(String message, Session session) throws JsonProcessingException {
-        String messageData = String.format("{\"message\": \"%s\"}", message);
-        System.out.println(messageData);
-        String json = objectMapper.writeValueAsString(messageData);
-        broadcast(messageData);
-    }
-
-    public static void broadcast(String message) {
-        for (Session client : clients) {
-            if (client.isOpen()) {
-                try {
-                    client.getBasicRemote().sendText(message);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    public static void notifyChat() {
-        for (Session client : clients) {
-            if (client.isOpen()) {
-                try {
-                    client.getBasicRemote().sendText("{\"update\":true}");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
     }
 
 }
