@@ -17,7 +17,6 @@ public class MessangerDao implements Dao {
                 Connection connection = DatabaseConnection.getConnection();
                 PreparedStatement statement = connection.prepareStatement(insertQuery);
         ) {
-
             statement.setInt(1, message.sender().id());
             statement.setString(2, message.text());
             statement.setInt(3, 1);
@@ -41,9 +40,9 @@ public class MessangerDao implements Dao {
             ResultSet result = statement.executeQuery(query);
             while (result.next()) {
                 Message message = new Message(
-                        new User(result.getInt("sender_id"), result.getString("nickname")),
-                        result.getString("message_text"),
-                        result.getInt("chat_id")
+                        new User(result.getInt(COLUMN_SENDER_ID), result.getString(COLUMN_NICKNAME)),
+                        result.getString(COLUMN_MESSAGE_TEXT),
+                        result.getInt(COLUMN_CHAT_ID)
                 );
                 messages.add(message);
             }
@@ -59,8 +58,8 @@ public class MessangerDao implements Dao {
         String query = "INSERT INTO users (nickname, email, password) values (?, ?, ?)";
         try (
                 Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement statement = connection.prepareStatement(query);
         ) {
-            PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, registerData.nickname());
             statement.setString(2, registerData.email());
             statement.setString(3, registerData.password());
@@ -82,7 +81,7 @@ public class MessangerDao implements Dao {
             statement.setString(2, loginData.password());
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return resultSet.getString("email").equals(loginData.email()) && resultSet.getString("password").equals(loginData.password());
+                return resultSet.getString(COLUMN_EMAIL).equals(loginData.email()) && resultSet.getString(COLUMN_PASSWORD).equals(loginData.password());
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -90,6 +89,10 @@ public class MessangerDao implements Dao {
         return false;
     }
 
-
-
+    private static final String COLUMN_SENDER_ID = "sender_id";
+    private static final String COLUMN_NICKNAME = "nickname";
+    private static final String COLUMN_EMAIL = "email";
+    private static final String COLUMN_PASSWORD = "password";
+    private static final String COLUMN_MESSAGE_TEXT = "message_text";
+    private static final String COLUMN_CHAT_ID = "chat_id";
 }
