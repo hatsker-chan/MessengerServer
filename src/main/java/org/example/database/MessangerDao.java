@@ -1,6 +1,8 @@
 package org.example.database;
 
+import org.example.entities.LoginData;
 import org.example.entities.Message;
+import org.example.entities.RegisterData;
 import org.example.entities.User;
 
 import java.sql.*;
@@ -12,9 +14,10 @@ public class MessangerDao implements Dao {
     public void saveMessage(Message message) {
         String insertQuery = "INSERT INTO messages (sender_id, message_text, chat_id) values (?, ?, ?)";
         try (
-                Connection connection = DatabaseConnection.getConnection()
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement statement = connection.prepareStatement(insertQuery);
         ) {
-            PreparedStatement statement = connection.prepareStatement(insertQuery);
+
             statement.setInt(1, message.sender().id());
             statement.setString(2, message.text());
             statement.setInt(3, 1);
@@ -50,4 +53,43 @@ public class MessangerDao implements Dao {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public boolean saveUser(RegisterData registerData) {
+        String query = "INSERT INTO users (nickname, email, password) values (?, ?, ?)";
+        try (
+                Connection connection = DatabaseConnection.getConnection();
+        ) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, registerData.nickname());
+            statement.setString(2, registerData.email());
+            statement.setString(3, registerData.password());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean checkUser(LoginData loginData) {
+        String query = "SELECT users.nickname FROM users WHERE users.email = ? AND users.password = ?";
+        try (
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement statement = connection.prepareStatement(query);
+        ) {
+            statement.setString(1, loginData.email());
+            statement.setString(2, loginData.password());
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getString("email").equals(loginData.email()) && resultSet.getString("password").equals(loginData.password());
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
+
+
+
 }

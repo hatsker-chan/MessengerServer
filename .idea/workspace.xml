@@ -9,15 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93098611-813f-4a76-bab6-3326fe91e467" name="Changes" comment="Add post requests to save messages">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/api/MessagesServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/api/WebSocketConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="93098611-813f-4a76-bab6-3326fe91e467" name="Changes" comment="Add WebSocketConnection for real-time message updating">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/api/LoginServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/api/RegisterServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/entities/LoginData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/entities/RegisterData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/database/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/database/DatabaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/database/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/database/Dao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/database/MessangerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/database/MessangerDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,6 +28,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="Record" />
       </list>
     </option>
   </component>
@@ -42,12 +41,12 @@
     &quot;assignee&quot;: &quot;hatsker-chan&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/hatsker-chan/MessengerServer.git",
-    "accountId": "28b44c6a-7728-43e7-aa5c-c55f7c22de64"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/hatsker-chan/MessengerServer.git&quot;,
+    &quot;accountId&quot;: &quot;28b44c6a-7728-43e7-aa5c-c55f7c22de64&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$USER_HOME$/.jdks/jbr-17.0.8/lib/src.zip!/jdk.httpserver/com/sun/net/httpserver/HttpHandler.java" root0="SKIP_INSPECTION" />
   </component>
@@ -90,6 +89,11 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
+    ]
   }
 }</component>
   <component name="RunDashboard">
@@ -245,7 +249,9 @@
       <updated>1735040512470</updated>
       <workItem from="1736528015150" duration="150000" />
       <workItem from="1736528385543" duration="2645000" />
-      <workItem from="1736753681416" duration="8170000" />
+      <workItem from="1736753681416" duration="9686000" />
+      <workItem from="1736800307320" duration="2289000" />
+      <workItem from="1737016598398" duration="295000" />
     </task>
     <task id="LOCAL-00001" summary="Add /api/messages to return a json with list of MessageDto">
       <option name="closed" value="true" />
@@ -271,7 +277,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736496895639</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Add WebSocketConnection for real-time message updating">
+      <option name="closed" value="true" />
+      <created>1736768027651</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1736768027651</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,6 +306,7 @@
     <MESSAGE value="Add /api/messages to return a json with list of MessageDto" />
     <MESSAGE value="Add insert messages logic" />
     <MESSAGE value="Add post requests to save messages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add post requests to save messages" />
+    <MESSAGE value="Add WebSocketConnection for real-time message updating" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add WebSocketConnection for real-time message updating" />
   </component>
 </project>
