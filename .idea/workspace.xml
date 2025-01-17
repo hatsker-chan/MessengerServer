@@ -9,12 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93098611-813f-4a76-bab6-3326fe91e467" name="Changes" comment="Add packages and made constants">
+    <list default="true" id="93098611-813f-4a76-bab6-3326fe91e467" name="Changes" comment="remove duplicate from MessagesServlet.java and reformat code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/api/MessagesServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/api/MessagesServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/api/WebSocketConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/api/WebSocketConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pojo/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pojo/Mapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/database/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/database/Dao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/database/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/database/DatabaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/database/MessangerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/database/MessangerDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +27,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Record" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -60,6 +62,9 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 2
@@ -73,6 +78,10 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.App.executor": "Run",
+    "JUnit.DataBaseTests.executor": "Run",
+    "JUnit.DataBaseTests.test.executor": "Run",
+    "JUnit.database in server.executor": "Run",
+    "JUnit.java in server.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -107,9 +116,8 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.98">
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.example.database.Test" />
+  <component name="RunManager" selected="JUnit.DataBaseTests.test">
+    <configuration name="DataBaseTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
@@ -117,6 +125,41 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="org.example.database" />
+      <option name="MAIN_CLASS_NAME" value="org.example.database.DataBaseTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DataBaseTests.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.database" />
+      <option name="MAIN_CLASS_NAME" value="org.example.database.DataBaseTests" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="database in server" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java/org/example/database" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="java in server" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -211,12 +254,18 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Test" />
+      <item itemvalue="JUnit.DataBaseTests" />
+      <item itemvalue="JUnit.DataBaseTests.test" />
+      <item itemvalue="JUnit.database in server" />
+      <item itemvalue="JUnit.java in server" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.98" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Test" />
+        <item itemvalue="JUnit.DataBaseTests.test" />
+        <item itemvalue="JUnit.DataBaseTests" />
+        <item itemvalue="JUnit.database in server" />
+        <item itemvalue="JUnit.java in server" />
       </list>
     </recent_temporary>
   </component>
@@ -240,7 +289,9 @@
       <workItem from="1736528385543" duration="2645000" />
       <workItem from="1736753681416" duration="9686000" />
       <workItem from="1736800307320" duration="2289000" />
-      <workItem from="1737016598398" duration="4626000" />
+      <workItem from="1737016598398" duration="6942000" />
+      <workItem from="1737104422387" duration="4353000" />
+      <workItem from="1737109644374" duration="1425000" />
     </task>
     <task id="LOCAL-00001" summary="Add /api/messages to return a json with list of MessageDto">
       <option name="closed" value="true" />
@@ -290,7 +341,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737020491642</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="remove duplicate from MessagesServlet.java and reformat code">
+      <option name="closed" value="true" />
+      <created>1737021940076</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1737021940076</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -314,6 +373,7 @@
     <MESSAGE value="Add WebSocketConnection for real-time message updating" />
     <MESSAGE value="Add some logic for authentication" />
     <MESSAGE value="Add packages and made constants" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add packages and made constants" />
+    <MESSAGE value="remove duplicate from MessagesServlet.java and reformat code" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove duplicate from MessagesServlet.java and reformat code" />
   </component>
 </project>

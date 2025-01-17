@@ -11,13 +11,14 @@ import java.util.Set;
 
 @ServerEndpoint("/ws/chat")
 public class WebSocketConnection {
+    private static final String UPDATE_JSON = "{\"update\":true}";
     private static final Set<Session> clients = new HashSet<>();
 
     public static void notifyChat() {
         for (Session client : clients) {
             if (client.isOpen()) {
                 try {
-                    client.getBasicRemote().sendText("{\"update\":true}");
+                    client.getBasicRemote().sendText(UPDATE_JSON);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
