@@ -1,20 +1,21 @@
 package org.example.pojo;
 
+import org.example.entities.Message;
+
 import java.util.List;
 
 public class MessagesResponse {
-    private List<MessageDto> messages;
+    private List<Message> messages;
 
-    public MessagesResponse(List<MessageDto> messages) {
-
+    public MessagesResponse(List<Message> messages) {
         this.messages = messages;
     }
 
-    public List<MessageDto> getMessages() {
+    public List<Message> getMessages() {
         return messages;
     }
 
-    public void setMessages(List<MessageDto> messages) {
+    public void setMessages(List<Message> messages) {
         this.messages = messages;
     }
 }

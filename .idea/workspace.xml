@@ -9,15 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93098611-813f-4a76-bab6-3326fe91e467" name="Changes" comment="Add exception handling on api layer and moved string constants">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/database/ConnectionSource.java" afterDir="false" />
+    <list default="true" id="93098611-813f-4a76-bab6-3326fe91e467" name="Changes" comment="Code reformat">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/api/MessagesServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/api/MessagesServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/database/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/database/Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/database/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/database/DatabaseConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/database/MessangerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/database/MessangerDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pojo/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pojo/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pojo/MessagesResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pojo/MessagesResponse.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +60,7 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -119,7 +115,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.MessengerDaoTest.test">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.98">
     <configuration name="MessengerDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -131,22 +127,6 @@
       <option name="PACKAGE_NAME" value="org.example.database" />
       <option name="MAIN_CLASS_NAME" value="org.example.database.MessengerDaoTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MessengerDaoTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.database.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.example.database" />
-      <option name="MAIN_CLASS_NAME" value="org.example.database.MessengerDaoTest" />
-      <option name="METHOD_NAME" value="test" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -242,7 +222,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.MessengerDaoTest.test" />
         <item itemvalue="JUnit.MessengerDaoTest" />
       </list>
     </recent_temporary>
@@ -272,7 +251,7 @@
       <workItem from="1737109644374" duration="10034000" />
       <workItem from="1737144083527" duration="2588000" />
       <workItem from="1737358098913" duration="7175000" />
-      <workItem from="1737536703236" duration="5698000" />
+      <workItem from="1737536703236" duration="7712000" />
     </task>
     <task id="LOCAL-00001" summary="Add /api/messages to return a json with list of MessageDto">
       <option name="closed" value="true" />
@@ -338,7 +317,31 @@
       <option name="project" value="LOCAL" />
       <updated>1737115135008</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Dao refactor and tests">
+      <option name="closed" value="true" />
+      <created>1737543522551</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1737543522552</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Change return value of saveUser method">
+      <option name="closed" value="true" />
+      <created>1737543630657</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1737543630657</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Code reformat">
+      <option name="closed" value="true" />
+      <created>1737543864851</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1737543864851</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -364,7 +367,10 @@
     <MESSAGE value="Add packages and made constants" />
     <MESSAGE value="remove duplicate from MessagesServlet.java and reformat code" />
     <MESSAGE value="Add exception handling on api layer and moved string constants" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add exception handling on api layer and moved string constants" />
+    <MESSAGE value="Dao refactor and tests" />
+    <MESSAGE value="Change return value of saveUser method" />
+    <MESSAGE value="Code reformat" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code reformat" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

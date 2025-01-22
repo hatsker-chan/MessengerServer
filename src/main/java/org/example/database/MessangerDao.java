@@ -39,8 +39,7 @@ public class MessangerDao implements Dao {
 
     private ConnectionSource connectionSource = new DatabaseConnection();
 
-    public MessangerDao() {
-    }
+    public MessangerDao() {}
 
     public MessangerDao(ConnectionSource source) {
         this.connectionSource = source;

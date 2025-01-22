@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.database.MessangerDao;
 import org.example.entities.Message;
 import org.example.pojo.Mapper;
-import org.example.pojo.MessageDto;
 import org.example.pojo.MessagesResponse;
 
 import javax.servlet.annotation.WebServlet;
@@ -20,14 +19,13 @@ import java.util.List;
 public class MessagesServlet extends HttpServlet {
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final MessangerDao dao = new MessangerDao();
-    private final Mapper mapper = new Mapper();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         setCORS(resp);
         try {
-            List<MessageDto> dtos = mapper.mapListMessageToDto(dao.getAllMessagesForChat(1));
-            String responseString = objectMapper.writeValueAsString(new MessagesResponse(dtos));
+            List<Message> messages = dao.getAllMessagesForChat(1);
+            String responseString = objectMapper.writeValueAsString(new MessagesResponse(messages));
             resp.setStatus(200);
             resp.setContentType("application/json; charset=utf-8");
             resp.getWriter().write(responseString);
