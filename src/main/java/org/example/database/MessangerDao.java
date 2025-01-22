@@ -50,7 +50,7 @@ public class MessangerDao implements Dao {
     public void saveMessage(Message message) throws SQLException {
         try (
                 Connection connection = connectionSource.getConnection();
-                PreparedStatement statement = connection.prepareStatement(INSERT_MESSAGE);
+                PreparedStatement statement = connection.prepareStatement(INSERT_MESSAGE)
         ) {
             statement.setInt(1, message.sender().id());
             statement.setString(2, message.text());
@@ -64,7 +64,7 @@ public class MessangerDao implements Dao {
         ArrayList<Message> messages = new ArrayList<>();
 
         try (Connection connection = connectionSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(SELECT_MESSAGES);
+             PreparedStatement statement = connection.prepareStatement(SELECT_MESSAGES)
         ) {
             statement.setInt(1, chat_id);
             ResultSet result = statement.executeQuery();
@@ -97,7 +97,7 @@ public class MessangerDao implements Dao {
     public void saveUser(RegisterData registerData) throws SQLException {
         try (
                 Connection connection = connectionSource.getConnection();
-                PreparedStatement statement = connection.prepareStatement(SAVE_USER);
+                PreparedStatement statement = connection.prepareStatement(SAVE_USER)
         ) {
             statement.setString(1, registerData.nickname());
             statement.setString(2, registerData.email());
@@ -110,7 +110,7 @@ public class MessangerDao implements Dao {
     public boolean checkUser(LoginData loginData) throws SQLException {
         try (
                 Connection connection = connectionSource.getConnection();
-                PreparedStatement statement = connection.prepareStatement(CHECK_USER);
+                PreparedStatement statement = connection.prepareStatement(CHECK_USER)
         ) {
             statement.setString(1, loginData.email());
             statement.setString(2, loginData.password());
@@ -123,10 +123,10 @@ public class MessangerDao implements Dao {
     }
 
     private int getNewChatId() throws SQLException {
-        try(
+        try (
                 Connection connection = connectionSource.getConnection();
                 Statement statement = connection.createStatement()
-                ) {
+        ) {
             ResultSet result = statement.executeQuery(GET_CHAT_USERS_COUNT);
             if (result.next()) {
                 int maxChatId = result.getInt(COLUMN_MAX_CHAT_ID);
