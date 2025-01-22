@@ -15,7 +15,7 @@ public interface Dao {
 
     void createChat(User user1, User user2) throws SQLException;
 
-    boolean saveUser(RegisterData registerData) throws SQLException;
+    void saveUser(RegisterData registerData) throws SQLException;
 
     boolean checkUser(LoginData loginData) throws SQLException;
 }

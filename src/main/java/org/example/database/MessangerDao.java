@@ -94,7 +94,7 @@ public class MessangerDao implements Dao {
     }
 
     @Override
-    public boolean saveUser(RegisterData registerData) throws SQLException {
+    public void saveUser(RegisterData registerData) throws SQLException {
         try (
                 Connection connection = connectionSource.getConnection();
                 PreparedStatement statement = connection.prepareStatement(SAVE_USER);
@@ -104,7 +104,6 @@ public class MessangerDao implements Dao {
             statement.setString(3, registerData.password());
             statement.executeUpdate();
         }
-        return true;
     }
 
     @Override
