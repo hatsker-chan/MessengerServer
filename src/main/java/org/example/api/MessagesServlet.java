@@ -7,14 +7,12 @@ import org.example.pojo.Mapper;
 import org.example.pojo.MessageDto;
 import org.example.pojo.MessagesResponse;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -32,8 +30,7 @@ public class MessagesServlet extends HttpServlet {
             String responseString = objectMapper.writeValueAsString(new MessagesResponse(dtos));
             resp.setStatus(200);
             resp.setContentType("application/json; charset=utf-8");
-            PrintWriter pw = resp.getWriter();
-            pw.write(responseString);
+            resp.getWriter().write(responseString);
         } catch (SQLException e) {
             resp.setStatus(500);
         }
@@ -43,14 +40,12 @@ public class MessagesServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         setCORS(resp);
         resp.setHeader("Accept", "application/json");
-
-
         try (BufferedInputStream bis = new BufferedInputStream(req.getInputStream())) {
             Message message = objectMapper.readValue(bis, Message.class);
             dao.saveMessage(message);
             resp.setStatus(201);
             WebSocketConnection.notifyChat();
-        } catch (SQLException sqlException){
+        } catch (SQLException sqlException) {
             resp.setStatus(500);
         }
     }

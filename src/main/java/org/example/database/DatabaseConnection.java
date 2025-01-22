@@ -4,12 +4,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DatabaseConnection {
+public class DatabaseConnection implements ConnectionSource {
     private static final String URL = "jdbc:postgresql://localhost:5432/Messanger";
     private static final String USER = "postgres";
     private static final String PASSWORD = "85493fjsvns2";
 
-    static public Connection getConnection() throws SQLException {
+
+    public Connection getConnection() throws SQLException {
         try {
             Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);

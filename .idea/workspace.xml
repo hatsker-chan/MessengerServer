@@ -9,14 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93098611-813f-4a76-bab6-3326fe91e467" name="Changes" comment="remove duplicate from MessagesServlet.java and reformat code">
+    <list default="true" id="93098611-813f-4a76-bab6-3326fe91e467" name="Changes" comment="Add exception handling on api layer and moved string constants">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/database/ConnectionSource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/api/MessagesServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/api/MessagesServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/api/WebSocketConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/api/WebSocketConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/database/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/database/Dao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/database/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/database/DatabaseConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/database/MessangerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/database/MessangerDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/pojo/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/pojo/UserDto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +27,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Record" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -80,6 +81,8 @@
     "Application.App.executor": "Run",
     "JUnit.DataBaseTests.executor": "Run",
     "JUnit.DataBaseTests.test.executor": "Run",
+    "JUnit.MessengerDaoTest.executor": "Run",
+    "JUnit.MessengerDaoTest.test.executor": "Run",
     "JUnit.database in server.executor": "Run",
     "JUnit.java in server.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -91,16 +94,16 @@
     "git-widget-placeholder": "refactoring",
     "jdk.selected.JAVA_MODULE": "jbr-17",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/selfEducation/java_back/messanger/back/untitled",
+    "last_opened_file_path": "C:/Users/User/Downloads/hsqldb-2.7.3.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "preferences.editor",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -116,8 +119,8 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.DataBaseTests.test">
-    <configuration name="DataBaseTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.MessengerDaoTest.test">
+    <configuration name="MessengerDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
@@ -126,13 +129,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="org.example.database" />
-      <option name="MAIN_CLASS_NAME" value="org.example.database.DataBaseTests" />
+      <option name="MAIN_CLASS_NAME" value="org.example.database.MessengerDaoTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DataBaseTests.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MessengerDaoTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
@@ -141,25 +144,9 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="org.example.database" />
-      <option name="MAIN_CLASS_NAME" value="org.example.database.DataBaseTests" />
+      <option name="MAIN_CLASS_NAME" value="org.example.database.MessengerDaoTest" />
       <option name="METHOD_NAME" value="test" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="database in server" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/src/test/java/org/example/database" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="java in server" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/src/test/java" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -253,19 +240,10 @@
         </option>
       </method>
     </configuration>
-    <list>
-      <item itemvalue="JUnit.DataBaseTests" />
-      <item itemvalue="JUnit.DataBaseTests.test" />
-      <item itemvalue="JUnit.database in server" />
-      <item itemvalue="JUnit.java in server" />
-      <item itemvalue="Tomcat Server.Tomcat 9.0.98" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DataBaseTests.test" />
-        <item itemvalue="JUnit.DataBaseTests" />
-        <item itemvalue="JUnit.database in server" />
-        <item itemvalue="JUnit.java in server" />
+        <item itemvalue="JUnit.MessengerDaoTest.test" />
+        <item itemvalue="JUnit.MessengerDaoTest" />
       </list>
     </recent_temporary>
   </component>
@@ -291,7 +269,10 @@
       <workItem from="1736800307320" duration="2289000" />
       <workItem from="1737016598398" duration="6942000" />
       <workItem from="1737104422387" duration="4353000" />
-      <workItem from="1737109644374" duration="1425000" />
+      <workItem from="1737109644374" duration="10034000" />
+      <workItem from="1737144083527" duration="2588000" />
+      <workItem from="1737358098913" duration="7175000" />
+      <workItem from="1737536703236" duration="5698000" />
     </task>
     <task id="LOCAL-00001" summary="Add /api/messages to return a json with list of MessageDto">
       <option name="closed" value="true" />
@@ -349,7 +330,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737021940076</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Add exception handling on api layer and moved string constants">
+      <option name="closed" value="true" />
+      <created>1737115135008</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1737115135008</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -374,6 +363,11 @@
     <MESSAGE value="Add some logic for authentication" />
     <MESSAGE value="Add packages and made constants" />
     <MESSAGE value="remove duplicate from MessagesServlet.java and reformat code" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove duplicate from MessagesServlet.java and reformat code" />
+    <MESSAGE value="Add exception handling on api layer and moved string constants" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add exception handling on api layer and moved string constants" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

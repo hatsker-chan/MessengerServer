@@ -5,7 +5,6 @@ public class UserDto {
     private String nickname;
 
     public UserDto(int userId, String nickname) {
-
         user_id = userId;
         this.nickname = nickname;
     }
